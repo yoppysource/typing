@@ -1,4 +1,7 @@
+import { getCurrencySymbol } from '@angular/common';
 import { Component } from '@angular/core';
+import { lorem } from 'faker';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'typing';
+  enteredText ='';
+  randomText = lorem.sentence();
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onInput(input:string) {
+    this.enteredText = input;
+    console.log(input);
+  }
+
+  compare(letter: string, input: string) {
+    if(!input){
+      return 'pending';
+    }
+    return letter === input ? 'correct' : 'incorrect';
+  }
 }
